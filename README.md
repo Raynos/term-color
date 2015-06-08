@@ -13,24 +13,67 @@ A lighter weight alternative to chalk
 ## Example
 
 ```js
-var termColor = require("term-color");
+var TermColor = require("term-color");
 
-// TODO. Show example
+console.log(TermColor.red('foo'))
 ```
 
-## Docs
+## Motivation
 
-### `var someValue = termColor(/*arguments*/)`
-
-<!--
-  This is a jsig notation of your interface.
-  https://github.com/Raynos/jsig
--->
-```ocaml
-term-color := (arg: Any) => void
+```sh
+raynos at raynos-SVS15127PXB  ~/projects/chalk on master
+$ npm ls --prod
+chalk@1.0.0 /home/raynos/projects/chalk
+├── ansi-styles@2.0.1
+├── escape-string-regexp@1.0.3
+├─┬ has-ansi@1.0.3
+│ ├── ansi-regex@1.1.1
+│ └── get-stdin@4.0.1
+├─┬ strip-ansi@2.0.1
+│ └── ansi-regex@1.1.1
+└── supports-color@1.3.1
 ```
 
-// TODO. State what the module does.
+```sh
+raynos at raynos-SVS15127PXB  ~/projects/term-color on master
+$ npm ls --prod
+term-color@1.0.0 /home/raynos/projects/term-color
+├── ansi-styles@2.0.1
+└── supports-color@1.3.1
+```
+
+`term-color` adds colors to your library but only costs 3
+dependencies instead of costing 9 dependencies.
+
+## Supported formats
+
+```js
+TermColor.black('text');
+TermColor.red('text');
+TermColor.green('text');
+TermColor.yellow('text');
+TermColor.blue('text');
+TermColor.magenta('text');
+TermColor.cyan('text');
+TermColor.white('text');
+TermColor.gray('text');
+TermColor.bgBlack('text');
+TermColor.bgRed('text');
+TermColor.bgGreen('text');
+TermColor.bgYellow('text');
+TermColor.bgBlue('text');
+TermColor.bgMagenta('text');
+TermColor.bgCyan('text');
+TermColor.bgWhite('text');
+TermColor.reset('text');
+TermColor.bold('text');
+TermColor.dim('text');
+TermColor.italic('text');
+TermColor.underline('text');
+TermColor.inverse('text');
+TermColor.hidden('text');
+TermColor.strikethrough('text');
+```
 
 ## Installation
 
