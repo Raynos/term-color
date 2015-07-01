@@ -23,15 +23,13 @@ console.log(TermColor.red('foo'))
 ```sh
 raynos at raynos-SVS15127PXB  ~/projects/chalk on master
 $ npm ls --prod
-chalk@1.0.0 /home/raynos/projects/chalk
-├── ansi-styles@2.0.1
+chalk@1.1.0 /home/raynos/projects/chalk
+├── ansi-styles@2.1.0
 ├── escape-string-regexp@1.0.3
-├─┬ has-ansi@1.0.3
-│ ├── ansi-regex@1.1.1
-│ └── get-stdin@4.0.1
-├─┬ strip-ansi@2.0.1
-│ └── ansi-regex@1.1.1
-└── supports-color@1.3.1
+├─┬ has-ansi@2.0.0
+│ └── ansi-regex@2.0.0
+├── strip-ansi@3.0.0
+└── supports-color@2.0.0
 ```
 
 ```sh
