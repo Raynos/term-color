@@ -1,48 +1,53 @@
-'use strict';
+const supportsColor = require('supports-color');
+const ansiStyles = require('ansi-styles');
 
-var supportsColor = require('supports-color');
-var ansiStyles = require('ansi-styles');
+let TermColor = {};
 
-var TermColor = {
-    black: buildColor('black'),
-    red: buildColor('red'),
-    green: buildColor('green'),
-    yellow: buildColor('yellow'),
-    blue: buildColor('blue'),
-    magenta: buildColor('magenta'),
-    cyan: buildColor('cyan'),
-    white: buildColor('white'),
-    gray: buildColor('gray'),
-    bgBlack: buildColor('bgBlack'),
-    bgRed: buildColor('bgRed'),
-    bgGreen: buildColor('bgGreen'),
-    bgYellow: buildColor('bgYellow'),
-    bgBlue: buildColor('bgBlue'),
-    bgMagenta: buildColor('bgMagenta'),
-    bgCyan: buildColor('bgCyan'),
-    bgWhite: buildColor('bgWhite'),
-    reset: buildColor('reset'),
-    bold: buildColor('bold'),
-    dim: buildColor('dim'),
-    italic: buildColor('italic'),
-    underline: buildColor('underline'),
-    inverse: buildColor('inverse'),
-    hidden: buildColor('hidden'),
-    strikethrough: buildColor('strikethrough')
+const buildCode = (str, { open, close }) => `${open}${str}${close}`;
+
+const buildColor = colorName => str =>
+  !TermColor.enabled ? str : buildCode(str, ansiStyles[colorName]);
+
+const createColorFunctions = colors =>
+  colors.reduce(
+    (colors, color) => ({
+      ...colors,
+      [color]: buildColor(color)
+    }),
+    {}
+  );
+
+const colors = [
+  'black',
+  'red',
+  'green',
+  'yellow',
+  'blue',
+  'magenta',
+  'cyan',
+  'white',
+  'gray',
+  'bgBlack',
+  'bgRed',
+  'bgGreen',
+  'bgYellow',
+  'bgBlue',
+  'bgMagenta',
+  'bgCyan',
+  'bgWhite',
+  'reset',
+  'bold',
+  'dim',
+  'italic',
+  'underline',
+  'inverse',
+  'hidden',
+  'strikethrough'
+];
+
+TermColor = {
+  enabled: supportsColor,
+  ...createColorFunctions(colors)
 };
 
-TermColor.enabled = supportsColor;
-
 module.exports = TermColor;
-
-function buildColor(colorName) {
-    return function colorFn(str) {
-        if (!TermColor.enabled) {
-            return str;
-        }
-
-        var code = ansiStyles[colorName];
-
-        return code.open + str + code.close;
-    };
-}
